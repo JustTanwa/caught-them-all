@@ -7,7 +7,7 @@ export default function Sidebar() {
 			bgcolor={'skyblue'}
 			flex={2}
 			p={1}
-			sx={{ display: { xs: 'none', sm: 'block' } }}
+			sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}
 		>
 			Sidebar
 		</Box>

@@ -45,10 +45,17 @@ export default function Topnav() {
 			display: 'none',
 		},
 	}));
+
+	const MyIconButton = styled(IconButton)(({ theme }) => ({
+		visibility: 'visible',
+		[theme.breakpoints.up('sm')]: {
+			visibility: 'hidden',
+		},
+	}));
 	return (
 		<AppBar position='sticky'>
 			<MyToolBar>
-				<IconButton
+				<MyIconButton
 					size='large'
 					edge='start'
 					color='inherit'
@@ -56,7 +63,7 @@ export default function Topnav() {
 					sx={{ mr: 2 }}
 				>
 					<MenuIcon />
-				</IconButton>
+				</MyIconButton>
 				<Box
 					sx={{
 						display: 'flex',
