@@ -6,9 +6,9 @@ import Topnav from './components/Topnav';
 
 function App() {
 	return (
-		<Box sx={{ background: 'red' }}>
+		<Box>
 			<Topnav />
-			<Stack direction='row' spacing={2} justifyContent='center'>
+			<Stack direction='row' spacing={2} justifyContent='center' marginTop={2}>
 				<Sidenav />
 				<Middle />
 				<Sidebar />
