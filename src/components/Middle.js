@@ -20,6 +20,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import Progress from './Progress';
+import AddPokemon from './AddPokemon';
 
 export default function Middle() {
 	const MyBox = styled(Box)({
@@ -33,6 +34,17 @@ export default function Middle() {
 	return (
 		<>
 			<Box
+				position='fixed'
+				sx={{
+					bottom: 30,
+					left: { xs: '50%', sm: 50 },
+					transform: { xs: 'translateX(-50%)' },
+				}}
+			>
+				<AddPokemon />
+			</Box>
+
+			<Box
 				p={1}
 				flex={3}
 				justifyContent='center'
@@ -40,7 +52,13 @@ export default function Middle() {
 				display='flex'
 				flexDirection={'column'}
 			>
-				<Typography variant='h6' component='p' marginBottom={2} marginTop={2} fontWeight={300}>
+				<Typography
+					variant='h6'
+					component='p'
+					marginBottom={2}
+					marginTop={2}
+					fontWeight={300}
+				>
 					Total Pokemon Caught
 				</Typography>
 				<MyBox position='relative' sx={{ width: '100%' }}>
