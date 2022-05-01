@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Add, Search as SearchIcon } from '@mui/icons-material';
+import { Add, Check, Close, Search as SearchIcon } from '@mui/icons-material';
 import {
 	Backdrop,
 	Box,
@@ -16,6 +16,7 @@ import {
 	Typography,
 	Search,
 	LinearProgress,
+	IconButton,
 } from '@mui/material';
 import React, { useState } from 'react';
 import Pokecard from './Pokecard';
@@ -25,6 +26,7 @@ export default function AddPokemon() {
 	const [pokemons, setPokemons] = useState(null);
 	const [searchParam, setSearchParam] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState();
 
 	const toggleOpen = () => {
 		setOpen(!open);
@@ -45,6 +47,7 @@ export default function AddPokemon() {
 
 	const handleChange = (e) => {
 		setSearchParam(e.target.value);
+		setError(null);
 	};
 	const onEnter = (e) => {
 		if (e.key === 'Enter') {
@@ -57,11 +60,13 @@ export default function AddPokemon() {
 		if (!pokemonName || pokemonName === ' ') return;
 		pokemonName = pokemonName.toLowerCase();
 		setLoading(true);
+		setPokemons(null);
 		const response = await fetch(
 			`https://pokeapi.co/api/v2/pokemon/${pokemonName}`
 		);
 		if (!response.ok && response.status >= 400) {
 			console.log('Unable to find pokemon');
+			setError('Unable to find the pokemon: ' + pokemonName);
 		} else {
 			const data = await response.json();
 			const { id, name, stats, sprites } = data;
@@ -75,6 +80,10 @@ export default function AddPokemon() {
 		}
 
 		setLoading(false);
+	};
+
+	const removePokemon = () => {
+		setPokemons(null);
 	};
 
 	return (
@@ -120,27 +129,66 @@ export default function AddPokemon() {
 								}
 							/>
 						</FormControl>
+						{error && (
+							<Box
+								sx={{
+									display: 'flex',
+									width: '100%',
+									flexDirection: 'column',
+									alignItems: 'center',
+									paddingTop: 3,
+								}}
+							>
+								<Typography variant='h6' sx={{ fontWeight: 400 }}>
+									{error}
+								</Typography>
+							</Box>
+						)}
 						{loading && (
 							<Box sx={{ width: '80%', padding: '10%' }}>
 								<LinearProgress />
 							</Box>
 						)}
 						{pokemons && (
-							<Box
-								sx={{
-									display: 'flex',
-									width: '100%',
-									justifyContent: 'center',
-									paddingTop: 3,
-								}}
-							>
-								<Pokecard
-									name={pokemons.name}
-									id={pokemons.id}
-									image={pokemons.sprite}
-									stats={pokemons.stats}
-								/>
-							</Box>
+							<>
+								<Box
+									sx={{
+										display: 'flex',
+										width: '100%',
+										flexDirection: 'column',
+										alignItems: 'center',
+										paddingTop: 3,
+									}}
+								>
+									<Pokecard
+										name={pokemons.name}
+										id={pokemons.id}
+										image={pokemons.sprite}
+										stats={pokemons.stats}
+									/>
+									<Typography variant='p' mt={2}>
+										Is this the Pokemon you caught?
+									</Typography>
+									<Box
+										display='flex'
+										justifyContent='center'
+										mt={2}
+										width='100%'
+									>
+										<IconButton aria-label='keep' color='success' size='large'>
+											<Check fontSize='large' />
+										</IconButton>
+										<IconButton
+											aria-label='delete'
+											color='error'
+											size='large'
+											onClick={removePokemon}
+										>
+											<Close fontSize='large' />
+										</IconButton>
+									</Box>
+								</Box>
+							</>
 						)}
 					</Box>
 				</Fade>
