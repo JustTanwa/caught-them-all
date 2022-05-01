@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Add, Check, Close, Search as SearchIcon } from '@mui/icons-material';
 import {
 	Backdrop,
@@ -8,22 +7,19 @@ import {
 	FormControl,
 	Input,
 	InputAdornment,
-	InputBase,
 	InputLabel,
 	Modal,
-	TextField,
 	Tooltip,
 	Typography,
-	Search,
 	LinearProgress,
 	IconButton,
 } from '@mui/material';
 import React, { useState } from 'react';
 import Pokecard from './Pokecard';
 
-export default function AddPokemon() {
+export default function AddPokemon({ update }) {
 	const [open, setOpen] = useState(false);
-	const [pokemons, setPokemons] = useState(null);
+	const [pokemon, setPokemon] = useState(null);
 	const [searchParam, setSearchParam] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState();
@@ -60,7 +56,7 @@ export default function AddPokemon() {
 		if (!pokemonName || pokemonName === ' ') return;
 		pokemonName = pokemonName.toLowerCase();
 		setLoading(true);
-		setPokemons(null);
+		setPokemon(null);
 		const response = await fetch(
 			`https://pokeapi.co/api/v2/pokemon/${pokemonName}`
 		);
@@ -70,7 +66,7 @@ export default function AddPokemon() {
 		} else {
 			const data = await response.json();
 			const { id, name, stats, sprites } = data;
-			setPokemons({
+			setPokemon({
 				name: name[0].toUpperCase() + name.slice(1),
 				id,
 				sprite: sprites['front_default'],
@@ -83,7 +79,12 @@ export default function AddPokemon() {
 	};
 
 	const removePokemon = () => {
-		setPokemons(null);
+		setPokemon(null);
+	};
+
+	const confirmPokemon = () => {
+		update(pokemon);
+		removePokemon();
 	};
 
 	return (
@@ -149,7 +150,7 @@ export default function AddPokemon() {
 								<LinearProgress />
 							</Box>
 						)}
-						{pokemons && (
+						{pokemon && (
 							<>
 								<Box
 									sx={{
@@ -161,10 +162,10 @@ export default function AddPokemon() {
 									}}
 								>
 									<Pokecard
-										name={pokemons.name}
-										id={pokemons.id}
-										image={pokemons.sprite}
-										stats={pokemons.stats}
+										name={pokemon.name}
+										id={pokemon.id}
+										image={pokemon.sprite}
+										stats={pokemon.stats}
 									/>
 									<Typography variant='p' mt={2}>
 										Is this the Pokemon you caught?
@@ -175,7 +176,12 @@ export default function AddPokemon() {
 										mt={2}
 										width='100%'
 									>
-										<IconButton aria-label='keep' color='success' size='large'>
+										<IconButton
+											aria-label='keep'
+											color='success'
+											size='large'
+											onClick={confirmPokemon}
+										>
 											<Check fontSize='large' />
 										</IconButton>
 										<IconButton

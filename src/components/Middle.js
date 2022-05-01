@@ -1,12 +1,5 @@
 import styled from '@emotion/styled';
-import {
-	ExpandMore,
-	Favorite,
-	FavoriteBorder,
-	MoreVert,
-	Share,
-} from '@mui/icons-material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import {
 	Box,
 	Button,
@@ -15,14 +8,14 @@ import {
 	CardContent,
 	CardMedia,
 	Checkbox,
-	IconButton,
 	Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Progress from './Progress';
 import AddPokemon from './AddPokemon';
 
 export default function Middle() {
+	const [pokemons, setPokemons] = useState([]);
 	const MyBox = styled(Box)({
 		display: 'flex',
 		justifyContent: 'center',
@@ -31,6 +24,10 @@ export default function Middle() {
 		gap: '1em',
 		paddingTop: '1em',
 	});
+
+	const updatePokemons = (pokemon) => {
+		setPokemons([pokemon, ...pokemons]);
+	};
 	return (
 		<>
 			<Box
@@ -41,7 +38,7 @@ export default function Middle() {
 					transform: { xs: 'translateX(-50%)' },
 				}}
 			>
-				<AddPokemon />
+				<AddPokemon update={updatePokemons} />
 			</Box>
 
 			<Box
@@ -69,51 +66,34 @@ export default function Middle() {
 					<Typography variant='h6' component='p' fontWeight={300}>
 						Lastest Pokemon Caught
 					</Typography>
-					<Card sx={{ maxWidth: '80%' }}>
-						<CardMedia
-							component='img'
-							alt='green iguana'
-							width='90%'
-							image='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png'
-						/>
-						<CardContent>
-							<Typography gutterBottom variant='h5' component='div'>
-								Lizard
-							</Typography>
-							<Typography variant='body2' color='text.secondary'>
-								Lizards are a widespread group of squamate reptiles, with over
-								6,000 species, ranging across all continents except Antarctica
-							</Typography>
-						</CardContent>
-						<CardActions>
-							<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
-							<Button size='small'>Share</Button>
-							<Button size='small'>Learn More</Button>
-						</CardActions>
-					</Card>
-
-					<Card sx={{ maxWidth: '80%' }}>
-						<CardMedia
-							component='img'
-							alt='green iguana'
-							width='80%'
-							image='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png'
-						/>
-						<CardContent>
-							<Typography gutterBottom variant='h5' component='div'>
-								Lizard
-							</Typography>
-							<Typography variant='body2' color='text.secondary'>
-								Lizards are a widespread group of squamate reptiles, with over
-								6,000 species, ranging across all continents except Antarctica
-							</Typography>
-						</CardContent>
-						<CardActions>
-							<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
-							<Button size='small'>Share</Button>
-							<Button size='small'>Learn More</Button>
-						</CardActions>
-					</Card>
+					{pokemons.map((pok, index) => (
+						<Card sx={{ maxWidth: '80%' }}>
+							<CardMedia
+								component='img'
+								alt={pok.name}
+								key={index}
+								width='90%'
+								image={pok.image}
+							/>
+							<CardContent>
+								<Typography gutterBottom variant='h5' component='div'>
+									{`${pok.id}. ${pok.name}`}
+								</Typography>
+								<Typography variant='body2' color='text.secondary'>
+									Lizards are a widespread group of squamate reptiles, with over
+									6,000 species, ranging across all continents except Antarctica
+								</Typography>
+							</CardContent>
+							<CardActions>
+								<Checkbox
+									icon={<FavoriteBorder />}
+									checkedIcon={<Favorite />}
+								/>
+								<Button size='small'>Share</Button>
+								<Button size='small'>Learn More</Button>
+							</CardActions>
+						</Card>
+					))}
 				</MyBox>
 			</Box>
 		</>
