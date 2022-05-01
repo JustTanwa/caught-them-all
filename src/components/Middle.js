@@ -73,29 +73,6 @@ export default function Middle() {
 						<CardMedia
 							component='img'
 							alt='green iguana'
-							width='100%'
-							image='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png'
-						/>
-						<CardContent>
-							<Typography gutterBottom variant='h5' component='div'>
-								Lizard
-							</Typography>
-							<Typography variant='body2' color='text.secondary'>
-								Lizards are a widespread group of squamate reptiles, with over
-								6,000 species, ranging across all continents except Antarctica
-							</Typography>
-						</CardContent>
-						<CardActions>
-							<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
-							<Button size='small'>Share</Button>
-							<Button size='small'>Learn More</Button>
-						</CardActions>
-					</Card>
-
-					<Card sx={{ maxWidth: '80%' }}>
-						<CardMedia
-							component='img'
-							alt='green iguana'
 							width='90%'
 							image='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png'
 						/>
