@@ -85,6 +85,7 @@ export default function AddPokemon({ update }) {
 	const confirmPokemon = () => {
 		update(pokemon);
 		removePokemon();
+		toggleOpen();
 	};
 
 	return (

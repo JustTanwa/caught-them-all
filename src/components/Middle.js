@@ -60,7 +60,7 @@ export default function Middle() {
 					Total Pokemon Caught
 				</Typography>
 				<MyBox position='relative' sx={{ width: '100%' }}>
-					<Progress />
+					<Progress pokemonCount={pokemons.length}/>
 				</MyBox>
 
 				<MyBox>

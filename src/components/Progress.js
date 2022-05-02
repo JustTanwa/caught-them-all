@@ -1,12 +1,13 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import React from 'react';
 
-export default function Progress() {
+export default function Progress({ pokemonCount }) {
+	console.log(Math.ceil(pokemonCount / 800 * 100), pokemonCount / 800 * 100)
 	return (
 		<>
 			<CircularProgress
 				variant='determinate'
-				value={Math.ceil(1/905)}
+				value={Math.ceil(pokemonCount / 800 * 100)}
 				strokeWidth={2}
 				style={{ width: '80%', height: 'auto' }}
 			/>
@@ -28,7 +29,7 @@ export default function Progress() {
 					color='text.secondary'
 					fontSize='3em'
 				>
-					{`${Math.ceil(1/905)}%`}
+					{`${pokemonCount / 800 * 100}%`}
 				</Typography>
 			</Box>
 		</>
