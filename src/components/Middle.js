@@ -13,9 +13,10 @@ import {
 import React, { useState } from 'react';
 import Progress from './Progress';
 import AddPokemon from './AddPokemon';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Middle() {
-	const [pokemons, setPokemons] = useState([]);
+	const [pokemons, setPokemons] = useLocalStorage("pokemons", [])
 	const MyBox = styled(Box)({
 		display: 'flex',
 		justifyContent: 'center',

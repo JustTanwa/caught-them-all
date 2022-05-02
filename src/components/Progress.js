@@ -6,8 +6,7 @@ export default function Progress() {
 		<>
 			<CircularProgress
 				variant='determinate'
-				value={70}
-				text={'70%'}
+				value={Math.ceil(1/905)}
 				strokeWidth={2}
 				style={{ width: '80%', height: 'auto' }}
 			/>
@@ -29,7 +28,7 @@ export default function Progress() {
 					color='text.secondary'
 					fontSize='3em'
 				>
-					{`${Math.round(70)}%`}
+					{`${Math.ceil(1/905)}%`}
 				</Typography>
 			</Box>
 		</>
