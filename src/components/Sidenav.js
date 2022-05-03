@@ -15,6 +15,7 @@ import {
 	Star,
 } from '@mui/icons-material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Sidenav() {
 	return (
@@ -22,7 +23,7 @@ export default function Sidenav() {
 			<Box position='fixed'>
 				<List>
 					<ListItem disablePadding>
-						<ListItemButton component='a' href='/'>
+						<ListItemButton component={Link} to={'/'}>
 							<ListItemIcon>
 								<Home />
 							</ListItemIcon>
@@ -30,7 +31,7 @@ export default function Sidenav() {
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
-						<ListItemButton>
+						<ListItemButton component={Link} to={'collections'}>
 							<ListItemIcon>
 								<Backpack />
 							</ListItemIcon>
@@ -38,7 +39,7 @@ export default function Sidenav() {
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
-						<ListItemButton>
+						<ListItemButton component={Link} to={'friends'}>
 							<ListItemIcon>
 								<Person />
 							</ListItemIcon>
@@ -46,7 +47,7 @@ export default function Sidenav() {
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
-						<ListItemButton>
+						<ListItemButton component={Link} to={'wishlist'}>
 							<ListItemIcon>
 								<Star />
 							</ListItemIcon>
@@ -54,7 +55,7 @@ export default function Sidenav() {
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
-						<ListItemButton>
+						<ListItemButton component={Link} to={'activities'}>
 							<ListItemIcon>
 								<Bolt />
 							</ListItemIcon>
@@ -62,7 +63,7 @@ export default function Sidenav() {
 						</ListItemButton>
 					</ListItem>
 					<ListItem disablePadding>
-						<ListItemButton>
+						<ListItemButton component={Link} to={'settings'}>
 							<ListItemIcon>
 								<Settings />
 							</ListItemIcon>
