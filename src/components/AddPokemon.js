@@ -52,6 +52,15 @@ export default function AddPokemon({ update }) {
 		}
 	};
 
+	const fetchFlavourText = async (id) => {
+		const response = await fetch(
+			`https://pokeapi.co/api/v2/pokemon-species/${id}/`
+		);
+		const data = await response.json();
+		const { flavor_text_entries } = data;
+		return flavor_text_entries.filter( textObj => textObj.language.name === "en")[0];
+	};
+
 	const fetchPokemon = async (pokemonName) => {
 		if (!pokemonName || pokemonName === ' ') return;
 		pokemonName = pokemonName.toLowerCase();
@@ -66,12 +75,14 @@ export default function AddPokemon({ update }) {
 		} else {
 			const data = await response.json();
 			const { id, name, stats, sprites } = data;
+			const flavourText = await fetchFlavourText(id);
 			setPokemon({
 				name: name[0].toUpperCase() + name.slice(1),
 				id,
 				sprite: sprites['front_default'],
 				image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
 				stats,
+				text: flavourText.flavor_text.replaceAll("\f"," "),
 			});
 		}
 

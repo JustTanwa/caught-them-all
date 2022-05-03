@@ -10,7 +10,7 @@ import {
 	Checkbox,
 	Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import Progress from './Progress';
 import AddPokemon from './AddPokemon';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -67,12 +67,12 @@ export default function Middle() {
 					<Typography variant='h6' component='p' fontWeight={300}>
 						Lastest Pokemon Caught
 					</Typography>
+					{pokemons.length < 1 && "No pokemons caught"}
 					{pokemons.map((pok, index) => (
-						<Card sx={{ maxWidth: '80%' }}>
+						<Card sx={{ maxWidth: '80%' }} key={index}>
 							<CardMedia
 								component='img'
 								alt={pok.name}
-								key={index}
 								width='90%'
 								image={pok.image}
 							/>
@@ -81,8 +81,7 @@ export default function Middle() {
 									{`${pok.id}. ${pok.name}`}
 								</Typography>
 								<Typography variant='body2' color='text.secondary'>
-									Lizards are a widespread group of squamate reptiles, with over
-									6,000 species, ranging across all continents except Antarctica
+									{pok.text}
 								</Typography>
 							</CardContent>
 							<CardActions>
