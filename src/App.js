@@ -3,7 +3,7 @@ import Middle from './components/Middle';
 import Sidenav from './components/Sidenav';
 import Sidebar from './components/Sidebar';
 import Topnav from './components/Topnav';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Collections from './components/Collections';
 import Friends from './components/Friends';
 
