@@ -16,7 +16,7 @@ import AddPokemon from './AddPokemon';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Middle() {
-	const [pokemons, setPokemons] = useLocalStorage("pokemons", [])
+	const [pokemons, setPokemons] = useLocalStorage('pokemons', []);
 	const MyBox = styled(Box)({
 		display: 'flex',
 		justifyContent: 'center',
@@ -60,14 +60,14 @@ export default function Middle() {
 					Total Pokemon Caught
 				</Typography>
 				<MyBox position='relative' sx={{ width: '100%' }}>
-					<Progress pokemonCount={pokemons.length}/>
+					<Progress pokemonCount={pokemons.length} />
 				</MyBox>
 
 				<MyBox>
 					<Typography variant='h6' component='p' fontWeight={300}>
 						Lastest Pokemon Caught
 					</Typography>
-					{pokemons.length < 1 && "No pokemons caught"}
+					{pokemons.length < 1 && 'No pokemons caught'}
 					{pokemons.map((pok, index) => (
 						<Card sx={{ maxWidth: '80%' }} key={index}>
 							<CardMedia
