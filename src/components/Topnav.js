@@ -5,6 +5,7 @@ import {
 	Avatar,
 	Badge,
 	Box,
+	Drawer,
 	IconButton,
 	MenuItem,
 	styled,
@@ -13,9 +14,11 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import Menu from '@mui/material/Menu';
+import Navlist from './Navlist';
 
 export default function Topnav() {
 	const [open, setOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
 	const openMenu = () => {
 		setOpen(true);
 	};
@@ -52,14 +55,23 @@ export default function Topnav() {
 			visibility: 'hidden',
 		},
 	}));
+
+	const handleClick = () => {
+		setMenuOpen(!menuOpen);
+	};
+
 	return (
 		<AppBar position='sticky'>
+			<Drawer open={menuOpen} onClose={handleClick} onClick={handleClick}>
+				<Navlist />
+			</Drawer>
 			<MyToolBar>
 				<MyIconButton
 					size='large'
 					edge='start'
 					color='inherit'
 					aria-label='menu'
+					onClick={handleClick}
 					sx={{ mr: 2 }}
 				>
 					<MenuIcon />
