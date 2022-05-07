@@ -5,16 +5,14 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
+	useTheme,
 } from '@mui/material';
-import {
-	Backpack,
-	Home,
-	Person,
-	Settings,
-} from '@mui/icons-material';
+import { Backpack, Home, Person, Settings } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 export default function Navlist() {
+	const theme = useTheme();
+	console.log(theme);
 	return (
 		<List>
 			<ListItem disablePadding>
@@ -22,7 +20,10 @@ export default function Navlist() {
 					<ListItemIcon>
 						<Home />
 					</ListItemIcon>
-					<ListItemText primary='Home' />
+					<ListItemText
+						primary='Home'
+						sx={{ color: theme.palette.text.primary }}
+					/>
 				</ListItemButton>
 			</ListItem>
 			<ListItem disablePadding>
@@ -30,7 +31,10 @@ export default function Navlist() {
 					<ListItemIcon>
 						<Backpack />
 					</ListItemIcon>
-					<ListItemText primary='Collections' />
+					<ListItemText
+						primary='Collections'
+						sx={{ color: theme.palette.text.primary }}
+					/>
 				</ListItemButton>
 			</ListItem>
 			<ListItem disablePadding>
@@ -38,7 +42,10 @@ export default function Navlist() {
 					<ListItemIcon>
 						<Person />
 					</ListItemIcon>
-					<ListItemText primary='Friends' />
+					<ListItemText
+						primary='Friends'
+						sx={{ color: theme.palette.text.primary }}
+					/>
 				</ListItemButton>
 			</ListItem>
 			<ListItem disablePadding>
@@ -46,7 +53,10 @@ export default function Navlist() {
 					<ListItemIcon>
 						<Settings />
 					</ListItemIcon>
-					<ListItemText primary='Settings' />
+					<ListItemText
+						primary='Settings'
+						sx={{ color: theme.palette.text.primary }}
+					/>
 				</ListItemButton>
 			</ListItem>
 		</List>

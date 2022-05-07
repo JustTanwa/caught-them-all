@@ -1,8 +1,9 @@
 import { Brightness4, Brightness7 } from '@mui/icons-material';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import React from 'react';
 
-export default function Settings({ changeTheme }) {
+export default function Settings({ changeTheme, darkTheme }) {
+	const theme = useTheme();
 	return (
 		<Box
 			p={1}
@@ -18,6 +19,7 @@ export default function Settings({ changeTheme }) {
 				marginBottom={2}
 				marginTop={2}
 				fontWeight={300}
+				sx={{ color: theme.palette.text.primary }}
 			>
 				Settings
 			</Typography>
@@ -35,8 +37,7 @@ export default function Settings({ changeTheme }) {
 			>
 				<Typography variant='p'>Toggle light and dark mode</Typography>
 				<IconButton sx={{ ml: 1 }} color='inherit' onClick={changeTheme}>
-					<Brightness7 />
-					<Brightness4 />
+					{darkTheme? <Brightness7 />:<Brightness4 />}
 				</IconButton>
 			</Box>
 		</Box>

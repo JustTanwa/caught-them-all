@@ -9,6 +9,7 @@ import {
 	CardMedia,
 	Checkbox,
 	Typography,
+	useTheme,
 } from '@mui/material';
 import React from 'react';
 import Progress from './Progress';
@@ -29,6 +30,8 @@ export default function Middle() {
 	const updatePokemons = (pokemon) => {
 		setPokemons([pokemon, ...pokemons]);
 	};
+
+	const theme = useTheme();
 	return (
 		<>
 			<Box
@@ -56,6 +59,7 @@ export default function Middle() {
 					marginBottom={2}
 					marginTop={2}
 					fontWeight={300}
+					sx={{ color: theme.palette.text.primary }}
 				>
 					Total Pokemon Caught
 				</Typography>
@@ -64,7 +68,12 @@ export default function Middle() {
 				</MyBox>
 
 				<MyBox>
-					<Typography variant='h6' component='p' fontWeight={300}>
+					<Typography
+						variant='h6'
+						component='p'
+						fontWeight={300}
+						sx={{ color: theme.palette.text.primary }}
+					>
 						Lastest Pokemon Caught
 					</Typography>
 					{pokemons.length < 1 && 'No pokemons caught'}

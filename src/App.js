@@ -1,4 +1,4 @@
-import { Box, createTheme, Stack } from '@mui/material';
+import { Box, createTheme, Stack, ThemeProvider } from '@mui/material';
 import Middle from './components/Middle';
 import Sidenav from './components/Sidenav';
 import Sidebar from './components/Sidebar';
@@ -8,7 +8,6 @@ import Collections from './components/Collections';
 import Friends from './components/Friends';
 import Settings from './components/Settings';
 import React, { useState } from 'react';
-import { ThemeProvider } from '@emotion/react';
 
 function App() {
 	const [darkTheme, setDarkTheme] = useState(false);
@@ -58,7 +57,7 @@ function App() {
 						<Route
 							path='settings'
 							element={
-								<Settings changeTheme={() => setDarkTheme(!darkTheme)} />
+								<Settings darkTheme={darkTheme} changeTheme={() => setDarkTheme(!darkTheme)} />
 							}
 						></Route>
 					</Routes>

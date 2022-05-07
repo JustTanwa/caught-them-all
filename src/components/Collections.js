@@ -1,10 +1,11 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import Pokecard from './Pokecard';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Collections() {
 	const [pokemons, setPokemons] = useLocalStorage('pokemons');
+	const theme = useTheme();
 	return (
 		<>
 			<Box
@@ -21,6 +22,7 @@ export default function Collections() {
 					marginBottom={2}
 					marginTop={2}
 					fontWeight={300}
+					sx={{ color: theme.palette.text.primary }}
 				>
 					Your collection
 				</Typography>

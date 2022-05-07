@@ -11,6 +11,7 @@ import {
 	ListItemAvatar,
 	ListItemText,
 	Typography,
+	useTheme,
 } from '@mui/material';
 import React, { useState } from 'react';
 
@@ -68,6 +69,8 @@ export default function Friends() {
 		);
 		setFriends(filtered);
 	};
+
+	const theme = useTheme();
 	return (
 		<Box
 			p={1}
@@ -83,6 +86,7 @@ export default function Friends() {
 				marginBottom={2}
 				marginTop={2}
 				fontWeight={300}
+				sx={{ color: theme.palette.text.primary }}
 			>
 				Your friends
 			</Typography>
@@ -116,6 +120,7 @@ export default function Friends() {
 						<ListItemText
 							primary={person.name}
 							secondary={person.description}
+							sx={{ color: theme.palette.text.primary }}
 						/>
 					</ListItem>
 				))}
