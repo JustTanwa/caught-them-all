@@ -17,6 +17,10 @@ I also included React Router Dom v6 to allow for navigating to different views.
 
 A short clip showcasing the features of the application. Users can search and add new pokemons to their collection, view friends list and change theme.
 
+https://user-images.githubusercontent.com/84579000/167306021-a7151ad9-829f-48e7-97d9-543d42d4980f.mp4
+
+
+
 ## What I have learnt
 
 I learned how to used styled components with the MUI v5 library. All the components in this web application was building using MUI5 components and styled with their `sx` prop for easier responsive design. Their `sx` prop has the same syntax as using CSS in React but it allow for greater customisation by accessing theme.
